@@ -7,10 +7,10 @@ import RightArrowIcon from '../../assets/images/right-arrow.svg';
 const Sidebar = () => {
   return (
     <aside className="col-start-1 row-start-1 row-end-[-1] py-2 px-4 bg-[#EDEDF2]">
-      <img src={logo} width={101} height={54} alt="Logo" />
+      <img className='ml-4' src={logo} width={101} height={54} alt="Logo" />
 
       <div className="py-3">
-        <span className="text-[11px] uppercase text-[var(--gray)] opacity-60">
+        <span className="ml-4 text-[11px] uppercase text-[var(--gray)] opacity-60">
           · Menu
         </span>
 
