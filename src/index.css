@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --light-gray: #535353;
+}
+
 @font-face {
   font-family: 'Figtree';
   src: url('./assets/fonts/Figtree/Figtree-Regular.woff2') format('woff2');
