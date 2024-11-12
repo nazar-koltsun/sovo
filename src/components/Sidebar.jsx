@@ -1,8 +1,8 @@
-import logo from '../../assets/images/logo.png';
-import MainNav from '../MainNav/MainNav';
-import Button from '../Button/Button';
-import LogOutIcon from '../../assets/images/log-out.svg';
-import RightArrowIcon from '../../assets/images/right-arrow.svg';
+import logo from '../assets/images/logo.png';
+import MainNav from './MainNav';
+import Button from './Button';
+import LogOutIcon from '../assets/images/log-out.svg';
+import RightArrowIcon from '../assets/images/right-arrow.svg';
 
 const Sidebar = () => {
   return (

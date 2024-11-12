@@ -1,10 +1,10 @@
-import NavItem from "../NavItem/NavItem";
-import dashboardIcon from "../../assets/images/nav-icons/dashboard.svg";
-import investingIcon from "../../assets/images/nav-icons/Inwestycje.svg";
-import projectManagerIcon from "../../assets/images/nav-icons/project-manager.svg";
-import customersIcon from "../../assets/images/nav-icons/customers.svg";
-import paymentsIcon from "../../assets/images/nav-icons/payments.svg";
-import revolutionIcon from "../../assets/images/nav-icons/revolution.svg";
+import NavItem from "./NavItem";
+import dashboardIcon from "../assets/images/nav-icons/dashboard.svg";
+import investingIcon from "../assets/images/nav-icons/Inwestycje.svg";
+import projectManagerIcon from "../assets/images/nav-icons/project-manager.svg";
+import customersIcon from "../assets/images/nav-icons/customers.svg";
+import paymentsIcon from "../assets/images/nav-icons/payments.svg";
+import revolutionIcon from "../assets/images/nav-icons/revolution.svg";
 
 const NAV_ITEMS = [
   {

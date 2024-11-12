@@ -7,38 +7,40 @@ import Customers from './pages/Customers';
 import Payments from './pages/Payments';
 import Revolution from './pages/Revolution';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <RootLayout />,
-    children: [
-      {
-        path: '/',
-        element: <Dashboard />,
-      },
-      {
-        path: '/investments',
-        element: <Investments />,
-      },
-      {
-        path: '/project-manager',
-        element: <ProjectManager />,
-      },
-      {
-        path: '/customers',
-        element: <Customers />,
-      },
-      {
-        path: '/payments',
-        element: <Payments />,
-      },
-      {
-        path: '/revolution',
-        element: <Revolution />,
-      },
-    ],
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <RootLayout />,
+      children: [
+        {
+          path: '/',
+          element: <Dashboard />,
+        },
+        {
+          path: '/investments',
+          element: <Investments />,
+        },
+        {
+          path: '/project-manager',
+          element: <ProjectManager />,
+        },
+        {
+          path: '/customers',
+          element: <Customers />,
+        },
+        {
+          path: '/payments',
+          element: <Payments />,
+        },
+        {
+          path: '/revolution',
+          element: <Revolution />,
+        },
+      ],
+    },
+  ],
+);
 
 const App = () => {
   return (
