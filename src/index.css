@@ -13,6 +13,10 @@
   --lotion: #FCFCFD;
 }
 
+body {
+  height: 100vh;
+}
+
 @font-face {
   font-family: 'Figtree';
   src: url('./assets/fonts/Figtree/Figtree-Regular.woff2') format('woff2');

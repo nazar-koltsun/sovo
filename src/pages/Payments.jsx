@@ -8,6 +8,7 @@ import BlockTitle from '../components/BlockTitle';
 import DetailsList from '../components/DetailsList';
 import ClientFilesList from '../components/ClientFilesList';
 import Vindication from '../components/Vindication';
+import Table from '../components/Table';
 
 const CUSTOMER_DETAILS = [
   {
@@ -95,7 +96,6 @@ const CLIENT_FILES = [
     name: 'Area-sqft.png',
     size: '2.3 MB',
   },
-  
 ];
 
 const VINDICATIONS_LIST = [
@@ -106,8 +106,8 @@ const VINDICATIONS_LIST = [
     status: {
       type: 'success',
       title: 'Wysłano',
-      date: '11/10/24'
-    }
+      date: '11/10/24',
+    },
   },
   {
     title: 'Przypomnienie o płatności',
@@ -116,8 +116,8 @@ const VINDICATIONS_LIST = [
     status: {
       type: 'pending',
       title: 'Wysyłka',
-      date: '24/10/24'
-    }
+      date: '24/10/24',
+    },
   },
   {
     title: 'Przypomnienie o płatności',
@@ -126,10 +126,75 @@ const VINDICATIONS_LIST = [
     status: {
       type: 'failed',
       title: 'Wysyłka nieudana',
-      date: '25/10/24'
-    }
+      date: '25/10/24',
+    },
   },
 ];
+
+const TABLE_DATA = [
+  {
+    'Termin z AN': '-',
+    '% Ceny brutto': '10%',
+    Kwota: '-',
+    Status: 'Windykacja',
+    'Data zapłaty': '-',
+    Zapłacono: '-',
+    Pozostało: '-',
+    Wypłacono: '-',
+    Dnia: '-',
+    'Kwota wypłacona': '-',
+  },
+  {
+    'Termin z AN': '-',
+    '% Ceny brutto': '10%',
+    Kwota: '-',
+    Status: 'Po terminie',
+    'Data zapłaty': '-',
+    Zapłacono: '-',
+    Pozostało: '-',
+    Wypłacono: '-',
+    Dnia: '-',
+    'Kwota wypłacona': '-',
+  },
+  {
+    'Termin z AN': '-',
+    '% Ceny brutto': '10%',
+    Kwota: '-',
+    Status: 'Zapłacono',
+    'Data zapłaty': '-',
+    Zapłacono: '-',
+    Pozostało: '-',
+    Wypłacono: '-',
+    Dnia: '-',
+    'Kwota wypłacona': '-',
+  },
+  {
+    'Termin z AN': '-',
+    '% Ceny brutto': '10%',
+    Kwota: '-',
+    Status: 'Do zapłaty',
+    'Data zapłaty': '-',
+    Zapłacono: '-',
+    Pozostało: '-',
+    Wypłacono: '-',
+    Dnia: '-',
+    'Kwota wypłacona': '-',
+  },
+];
+
+const TABLE_SUMMARY = {
+  'Termin z AN': 'Total',
+  '% Ceny brutto': '100%',
+  Kwota: '145 000 zł',
+  Status: 'Status',
+  'Data zapłaty': '-',
+  Zapłacono: '120 000 zł',
+  Pozostało: '21 000 zł',
+  Wypłacono: '-',
+  Dnia: '-',
+  'Kwota wypłacona': '-',
+};
+const TABLE_BILL = { 'Termin z AN': 'Rachunek bankowy:', age: '-' };
 
 const Payments = () => {
   return (
@@ -174,6 +239,15 @@ const Payments = () => {
 
         <Vindication items={VINDICATIONS_LIST} />
       </div>
+
+      <Table
+        className="mt-[28px]"
+        topContent={<BlockTitle>Harmonogram płatności</BlockTitle>}
+        data={TABLE_DATA}
+        summary={TABLE_SUMMARY}
+        bill={TABLE_BILL}
+        editable
+      />
     </PageWrapper>
   );
 };
