@@ -2,7 +2,75 @@ import PageWrapper from '../components/PageWrapper';
 import PageTitle from '../components/PageTitle';
 import Card from '../components/Card';
 import BuildingInfo from '../components/BuildingInfo';
-import BuildingImage from '../assets/images/building.png'
+import BuildingImage from '../assets/images/building.png';
+import UserContacts from '../components/UserContacts';
+import BlockTitle from '../components/BlockTitle';
+import DetailsList from '../components/DetailsList';
+
+const CUSTOMER_DETAILS = [
+  {
+    title: 'Umowa deweloperska',
+    value: 'UM/WOK/2042/13',
+  },
+  {
+    title: 'Data',
+    value: '12/10/2023',
+  },
+  {
+    title: 'Mieszkanie',
+    value: 'CO2',
+  },
+  {
+    title: 'Powierzchnia',
+    value: '44,12 m2',
+  },
+];
+
+const BUYERS_DETAILS = [
+  [
+    {
+      title: 'Nabywca 1',
+      value: 'Jan Nowak',
+    },
+    {
+      title: 'Adres',
+      value: 'ul. Kaszubska 4, Poznań',
+    },
+    {
+      title: 'PESEL',
+      value: '91080707741',
+    },
+  ],
+  [
+    {
+      title: 'Nabywca 2',
+      value: 'Jan Nowak',
+    },
+    {
+      title: 'Adres',
+      value: 'ul. Kaszubska 4, Poznań',
+    },
+    {
+      title: 'PESEL',
+      value: '91080707741',
+    },
+  ],
+];
+
+const CUSTOMER_OTHER_DETAILS = [
+  {
+    title: 'Cena netto',
+    value: '145 000 zł',
+  },
+  {
+    title: 'Cena brutto',
+    value: '245 000 zł',
+  },
+  {
+    title: 'Liczba rat',
+    value: '9',
+  },
+];
 
 const Payments = () => {
   return (
@@ -17,7 +85,31 @@ const Payments = () => {
             imagePath={BuildingImage}
           />
 
-          
+          <UserContacts
+            className="mt-[20px]"
+            address="ul. Kaliska 1, Warszawa"
+            userName="Jan Kowalski"
+            phoneNumber="+48 123 456 789"
+          />
+
+          <div className="mt-[22px]">
+            <BlockTitle>Szczegóły Klienta</BlockTitle>
+
+            <DetailsList className="mt-3" items={CUSTOMER_DETAILS} />
+
+            <div className="flex gap-4">
+              {BUYERS_DETAILS.map((buyer) => (
+                <DetailsList key={buyer.title} className="mt-3" items={buyer} />
+              ))}
+            </div>
+
+            <DetailsList className="mt-3" items={CUSTOMER_OTHER_DETAILS} />
+          </div>
+
+          <div className="mt-[22px]">
+            <BlockTitle>Pliki Klienta:</BlockTitle>
+
+          </div>
         </Card>
 
         <Card>Windykacja</Card>
