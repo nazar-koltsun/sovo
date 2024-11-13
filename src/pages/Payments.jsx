@@ -7,6 +7,7 @@ import UserContacts from '../components/UserContacts';
 import BlockTitle from '../components/BlockTitle';
 import DetailsList from '../components/DetailsList';
 import ClientFilesList from '../components/ClientFilesList';
+import Vindication from '../components/Vindication';
 
 const CUSTOMER_DETAILS = [
   {
@@ -97,12 +98,45 @@ const CLIENT_FILES = [
   
 ];
 
+const VINDICATIONS_LIST = [
+  {
+    title: 'Przypomnienie o płatności',
+    email: 'michaelminer@dayrep.com',
+    price: '12 000 zł',
+    status: {
+      type: 'success',
+      title: 'Wysłano',
+      date: '11/10/24'
+    }
+  },
+  {
+    title: 'Przypomnienie o płatności',
+    email: 'michaelminer@dayrep.com',
+    price: '12 000 zł',
+    status: {
+      type: 'pending',
+      title: 'Wysyłka',
+      date: '24/10/24'
+    }
+  },
+  {
+    title: 'Przypomnienie o płatności',
+    email: 'michaelminer@dayrep.com',
+    price: '12 000 zł',
+    status: {
+      type: 'failed',
+      title: 'Wysyłka nieudana',
+      date: '25/10/24'
+    }
+  },
+];
+
 const Payments = () => {
   return (
     <PageWrapper>
       <PageTitle>Klient - Szczegóły</PageTitle>
 
-      <div className="grid grid-cols-[1fr_447px] gap-[13px] mt-[20px]">
+      <div className="grid grid-cols-[1fr_447px] gap-[13px] mt-[20px] items-start">
         <Card className="pt-[20px]">
           <BuildingInfo
             title="Kamienice Calisia"
@@ -123,8 +157,8 @@ const Payments = () => {
             <DetailsList className="mt-3" items={CUSTOMER_DETAILS} />
 
             <div className="flex gap-4">
-              {BUYERS_DETAILS.map((buyer) => (
-                <DetailsList key={buyer.title} className="mt-3" items={buyer} />
+              {BUYERS_DETAILS.map((buyer, index) => (
+                <DetailsList key={index} className="mt-3" items={buyer} />
               ))}
             </div>
 
@@ -138,7 +172,7 @@ const Payments = () => {
           </div>
         </Card>
 
-        <Card>Windykacja</Card>
+        <Vindication items={VINDICATIONS_LIST} />
       </div>
     </PageWrapper>
   );
