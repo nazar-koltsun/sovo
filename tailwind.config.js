@@ -4,7 +4,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        figtree: ['Figtree', 'Arial', 'sans-serif'], // 'custom' is the name you'll use in your classes
+        figtree: ['Figtree', 'Arial', 'sans-serif'],
+      },
+      boxShadow: {
+        blockShadow: '0px 2px 4px 0px #0000000D',
       },
     },
   },

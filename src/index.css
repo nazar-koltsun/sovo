@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 :root {
+  /* colors */
   --gray: #535353;
   --pink: #E96767;
+  --electric-blue: #5D7186;
+  --arsenic: #323A46;
   --maroon: #780000;
 }
 
