@@ -6,6 +6,7 @@ import BuildingImage from '../assets/images/building.png';
 import UserContacts from '../components/UserContacts';
 import BlockTitle from '../components/BlockTitle';
 import DetailsList from '../components/DetailsList';
+import ClientFilesList from '../components/ClientFilesList';
 
 const CUSTOMER_DETAILS = [
   {
@@ -72,6 +73,30 @@ const CUSTOMER_OTHER_DETAILS = [
   },
 ];
 
+const CLIENT_FILES = [
+  {
+    type: 'pdf',
+    name: 'Property-File.pdf',
+    size: '2.4 MB',
+  },
+  {
+    type: 'contact',
+    name: 'Client-List.pdf',
+    size: '1.6 MB',
+  },
+  {
+    type: 'image',
+    name: 'Property-Photo.pdf',
+    size: '23.2 MB',
+  },
+  {
+    type: 'map',
+    name: 'Area-sqft.png',
+    size: '2.3 MB',
+  },
+  
+];
+
 const Payments = () => {
   return (
     <PageWrapper>
@@ -109,6 +134,7 @@ const Payments = () => {
           <div className="mt-[22px]">
             <BlockTitle>Pliki Klienta:</BlockTitle>
 
+            <ClientFilesList className="mt-[21px]" files={CLIENT_FILES} />
           </div>
         </Card>
 
