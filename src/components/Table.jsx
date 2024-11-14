@@ -19,12 +19,12 @@ const Table = ({
   const basicTdClasses = 'py-[15px] px-[15px] text-left';
   return (
     <div
-      className={`${className} bg-white rounded-[6px] border border-[var(--bright-gray)] text-[var(--electric-blue)] overflow-x-auto`}
+      className={`${className} bg-white rounded-[6px] border border-[var(--bright-gray)] text-[var(--electric-blue)] overflow-x-auto w-[calc(100vw-380px)] max-1024:w-[calc(100vw-255px)] max-768:w-[calc(100vw-55px)]`}
     >
-      <div className="py-[20px] px-[20px] border-b border-[var(--bright-gray)]">
+      <div className="sticky left-0 py-[20px] px-[20px] border-b border-[var(--bright-gray)]">
         {topContent}
       </div>
-      <table className="table-auto w-full">
+      <table className="w-full whitespace-nowrap">
         <thead>
           <tr className="bg-[var(--lotion)] border-b border-[var(--bright-gray)]">
             {editable && (

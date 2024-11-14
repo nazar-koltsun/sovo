@@ -2,7 +2,7 @@ import Button from './Button';
 
 const BuildingInfo = ({ title, type, imagePath }) => {
   return (
-    <div className="flex justify-between items-center gap-4">
+    <div className="flex justify-between items-center gap-4 max-500:flex-col max-500:items-start">
       <div className="flex items-center">
         <img
           src={imagePath}
@@ -20,9 +20,11 @@ const BuildingInfo = ({ title, type, imagePath }) => {
         </div>
       </div>
 
-      <div className="flex justify-end">
-        <Button className="mr-[5px]">Akcja 1</Button>
-        <Button variant="bordered" className="min-w-[150px]">Akcja 2</Button>
+      <div className="flex justify-end max-1024:flex-col gap-[5px] max-500:flex-row max-500:w-full">
+        <Button className="max-500:w-1/2">Akcja 1</Button>
+        <Button variant="bordered" className="min-w-[150px] max-500:w-1/2">
+          Akcja 2
+        </Button>
       </div>
     </div>
   );

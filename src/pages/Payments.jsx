@@ -201,7 +201,7 @@ const Payments = () => {
     <PageWrapper>
       <PageTitle>Klient - Szczegóły</PageTitle>
 
-      <div className="grid grid-cols-[1fr_447px] gap-[13px] mt-[20px] items-start">
+      <div className="grid grid-cols-[1fr_447px] max-1400:grid-cols-1 gap-[13px] mt-[20px] items-start">
         <Card className="pt-[20px]">
           <BuildingInfo
             title="Kamienice Calisia"
@@ -233,7 +233,7 @@ const Payments = () => {
           <div className="mt-[22px]">
             <BlockTitle>Pliki Klienta:</BlockTitle>
 
-            <ClientFilesList className="mt-[21px]" files={CLIENT_FILES} />
+            <ClientFilesList className="mt-[21px] max-768:grid max-768:grid-cols-2 max-500:grid-cols-1" files={CLIENT_FILES} />
           </div>
         </Card>
 
