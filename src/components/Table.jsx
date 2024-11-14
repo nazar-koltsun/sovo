@@ -1,3 +1,5 @@
+import { cn } from '../lib/utils';
+
 const TableCheckBox = ({ onChange }) => {
   return (
     <input
@@ -53,7 +55,17 @@ const Table = ({
               )}
               {Object.keys(row).map((key, index) => (
                 <td key={index} className={`${basicTdClasses}`}>
-                  {row[key]}
+                  {key === 'Status' ? 
+                  <span className={
+                    cn('text-[11px] p-1 text-center rounded-[4px] text-white', 
+                      row[key] === 'Windykacja' && "bg-[#C15C5C]",
+                      row[key] === 'Po terminie' && "bg-[#E99B67]",
+                      row[key] === 'Zapłacono' && "bg-[#5CC184]",
+                      row[key] === 'Do zapłaty' && "bg-[#BEBEBE]",
+                    )}>
+                    {row[key]}
+                  </span> 
+                  : row[key]}
                 </td>
               ))}
             </tr>
