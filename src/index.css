@@ -5,12 +5,13 @@
 :root {
   /* colors */
   --gray: #535353;
-  --pink: #E96767;
-  --electric-blue: #5D7186;
-  --arsenic: #323A46;
+  --pink: #e96767;
+  --electric-blue: #5d7186;
+  --arsenic: #323a46;
   --maroon: #780000;
-  --bright-gray: #EAEDF1;
-  --lotion: #FCFCFD;
+  --bright-gray: #eaedf1;
+  --lotion: #fcfcfd;
+  --alabaster: #f1e5e5;
 }
 
 body {

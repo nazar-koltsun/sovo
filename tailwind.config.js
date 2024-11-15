@@ -10,9 +10,12 @@ module.exports = {
         blockShadow: '0px 2px 4px 0px #0000000D',
       },
       screens: {
+        'max-1600': { 'max': '1600px' },
         'max-1400': { 'max': '1400px' },
+        'max-1200': { 'max': '1200px' },
         'max-1024': { 'max': '1024px' },
         'max-768': { 'max': '768px' },
+        'max-600': { 'max': '600px' },
         'max-500': { 'max': '500px' },
       },
     },

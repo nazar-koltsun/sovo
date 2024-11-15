@@ -22,7 +22,7 @@ const VindicationList = ({ items }) => {
           {items.map((item, index) => (
             <tr key={index} className=" border-b border-[var(--bright-gray)]">
               <td className="pb-[42px] pt-[22px] pr-[15px]">
-                <div className="flex justify-center items-center w-[32px] h-[48px] rounded-[6px] bg-[#7800001A]">
+                <div className="flex justify-center items-center w-[32px] h-[48px] rounded-[6px] bg-[var(--alabaster)]">
                   <img src={VindicationIcon} width={23} height={23} alt="" />
                 </div>
               </td>

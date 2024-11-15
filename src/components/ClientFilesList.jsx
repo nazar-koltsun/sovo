@@ -25,7 +25,7 @@ const ClientFilesList = ({ files, className }) => {
       {files.map((file, index) => (
         <li
           key={index}
-          className="bg-[var(--lotion)] rounded-[6px] border border-[var(--bright-gray)] py-[11px] pr-[18px] pl-[13px] inline-flex items-center justify-between gap-[10px] hover:shadow-blockShadow cursor-pointer"
+          className="bg-[var(--lotion)] rounded-[6px] border border-[var(--bright-gray)] py-[11px] pr-[18px] pl-[13px] inline-flex items-center gap-[10px] hover:shadow-blockShadow cursor-pointer"
         >
           <img
             src={getFileTypeIcon(file.type)}
@@ -39,7 +39,7 @@ const ClientFilesList = ({ files, className }) => {
             <p className="text-xs text-[var(--electric-blue)]">{file.size} KB</p>
           </div>
 
-          <img src={DownLoadIcon} alt="Download Icon" />
+          <img className='ml-auto' src={DownLoadIcon} alt="Download Icon" />
         </li>
       ))}
     </ul>
