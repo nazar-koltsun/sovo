@@ -18,7 +18,6 @@ import ReservationIcon from '../assets/images/reservations.svg';
 import PlusIcon from '../assets/images/plus.svg';
 import SearchInput from '../components/SearchInput';
 
-
 const CUSTOMER_DETAILS = [
   {
     title: 'Liczba Lokali',
@@ -96,71 +95,88 @@ const VINDICATIONS_LIST = [
 
 const TABLE_DATA = [
   {
-    'Termin z AN': '-',
-    '% Ceny brutto': '10%',
-    Kwota: '-',
-    Status: 'Windykacja',
-    'Data zapłaty': '-',
-    Zapłacono: '-',
-    Pozostało: '-',
-    Wypłacono: '-',
-    Dnia: '-',
-    'Kwota wypłacona': '-',
-  },
-  {
-    'Termin z AN': '-',
-    '% Ceny brutto': '10%',
-    Kwota: '-',
-    Status: 'Po terminie',
-    'Data zapłaty': '-',
-    Zapłacono: '-',
-    Pozostało: '-',
-    Wypłacono: '-',
-    Dnia: '-',
-    'Kwota wypłacona': '-',
-  },
-  {
-    'Termin z AN': '-',
-    '% Ceny brutto': '10%',
-    Kwota: '-',
+    'LP.': '1',
+    Mieszkanie: 'CO2',
+    Powierzchnia: '1',
+    'Nabywca 1/2': '1. Jan Nowak',
+    'Kwota z AN': '1',
+    Zapłacono: '1',
+    Pozostało: '25 000 zł',
+    Wypłacono: '1',
+    'Opłata rezerwacyjna': '-',
+    'Data zapłaty': '10/11/2024',
     Status: 'Zapłacono',
-    'Data zapłaty': '-',
-    Zapłacono: '-',
+    Zwrócono: '-',
+    'Data zwrotu': '-',
+    'Przekazano na rachunek deweloperski': '-',
+    'Data przekazania': '-',
     Pozostało: '-',
-    Wypłacono: '-',
-    Dnia: '-',
-    'Kwota wypłacona': '-',
+    Komentarz: '-',
+    'Wymagane wpłaty': '-',
+    'Brakujące wpłaty': '-',
   },
   {
-    'Termin z AN': '-',
-    '% Ceny brutto': '10%',
-    Kwota: '-',
-    Status: 'Do zapłaty',
-    'Data zapłaty': '-',
-    Zapłacono: '-',
+    'LP.': '2',
+    Mieszkanie: 'CO2',
+    Powierzchnia: '1',
+    'Nabywca 1/2': '',
+    'Kwota z AN': '1',
+    Zapłacono: '1',
+    Pozostało: '17 000 zł',
+    Wypłacono: '1',
+    'Opłata rezerwacyjna': '-',
+    'Data zapłaty': '10/11/2024',
+    Status: 'Windykacja',
+    Zwrócono: '-',
+    'Data zwrotu': '-',
+    'Przekazano na rachunek deweloperski': '-',
+    'Data przekazania': '-',
     Pozostało: '-',
-    Wypłacono: '-',
-    Dnia: '-',
-    'Kwota wypłacona': '-',
+    Komentarz: '-',
+    'Wymagane wpłaty': '-',
+    'Brakujące wpłaty': '-',
+  },
+  {
+    'LP.': '',
+    Mieszkanie: 'CO2',
+    Powierzchnia: '1',
+    'Nabywca 1/2': '',
+    'Kwota z AN': '1',
+    Zapłacono: '1',
+    Pozostało: '17 000 zł',
+    Wypłacono: '1',
+    'Opłata rezerwacyjna': '-',
+    'Data zapłaty': '10/11/2024',
+    Status: 'Po terminie',
+    Zwrócono: '-',
+    'Data zwrotu': '-',
+    'Przekazano na rachunek deweloperski': '-',
+    'Data przekazania': '-',
+    Pozostało: '-',
+    Komentarz: '-',
+    'Wymagane wpłaty': '-',
+    'Brakujące wpłaty': '-',
   },
 ];
 
 const TABLE_SUMMARY = {
-  'Termin z AN': 'Total',
-  '% Ceny brutto': '100%',
-  Kwota: '145 000 zł',
-  Status: 'Status',
-  'Data zapłaty': '-',
-  Zapłacono: '120 000 zł',
-  Pozostało: '21 000 zł',
-  Wypłacono: '-',
-  Dnia: '-',
-  'Kwota wypłacona': '-',
+  'Kwota z AN': 'zł',
+  Zapłacono: 'zł',
+  Pozostało: 'zł',
+  Wypłacono: 'zł',
+  'Opłata rezerwacyjna': 'zł',
+  'Data zapłaty	': '-',
 };
-const TABLE_BILL = { 'Termin z AN': 'Rachunek bankowy:', age: '-' };
+
+const TABLE_BILL = {
+  Mieszkanie: 'Podsumowanie',
+  Powierzchnia: 'Lokal 1',
+  'Nabywca 1/2': 'Lokal 2',
+};
 
 const TableHeader = () => {
-  const basicFieldClasses = 'w-[116px] h-[30px] border border-[#EEF2F7] rounded-[6px] focus:outline-none text-[13px]';
+  const basicFieldClasses =
+    'w-[116px] h-[30px] border border-[#EEF2F7] rounded-[6px] focus:outline-none text-[13px]';
 
   return (
     <div className="flex gap-[40px] max-1600:flex-col max-1600:gap-4 max-1600:justify-between">
@@ -172,15 +188,9 @@ const TableHeader = () => {
           iconClassName="w-[13px] h-[13px]"
           placeholder="Szukaj wg. klienta, mieszkania itp."
         />
-        <input
-          type="text"
-          className={`${basicFieldClasses} px-[10px]`}
-        />
-        <input
-          type="text"
-          className={`${basicFieldClasses} px-[10px]`}
-        />
-        <select className={`${basicFieldClasses} pl-[5px]`}>
+        <input type="text" className={`${basicFieldClasses} px-[10px]`} />
+        <input type="text" className={`${basicFieldClasses} px-[10px]`} />
+        <select className={`${basicFieldClasses} pl-[5px] bg-transparent`}>
           <option value="Sortowanie">Sortowanie</option>
           <option value="Wszystkie">Wszystkie</option>
         </select>
@@ -271,7 +281,8 @@ const Payments = () => {
         data={TABLE_DATA}
         summary={TABLE_SUMMARY}
         bill={TABLE_BILL}
-        editable
+        showTotalSecondary
+        hasActions
       />
     </PageWrapper>
   );

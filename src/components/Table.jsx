@@ -1,4 +1,6 @@
 import { cn } from '../lib/utils';
+import Button from './Button';
+import EditDotsIcon from '../assets/images/edit-dots.svg';
 
 const TableCheckBox = ({ onChange }) => {
   return (
@@ -16,9 +18,14 @@ const Table = ({
   summary,
   bill,
   editable = false,
+  hasActions = false,
+  showTotalPrimary,
+  showTotalSecondary,
   className,
 }) => {
   const basicTdClasses = 'py-[15px] px-[15px] text-left';
+  const emptyActionTd = <td className={`${basicTdClasses} w-[54px]`}></td>;
+
   return (
     <div
       className={`${className} bg-white rounded-[6px] border border-[var(--bright-gray)] text-[var(--electric-blue)] overflow-x-auto w-[calc(100vw-380px)] max-1024:w-[calc(100vw-255px)] max-768:w-[calc(100vw-55px)]`}
@@ -26,7 +33,7 @@ const Table = ({
       <div className="sticky left-0 py-[20px] px-[20px] border-b border-[var(--bright-gray)]">
         {topContent}
       </div>
-      <table className="w-full whitespace-nowrap">
+      <table className="w-full whitespace-nowrap relative">
         <thead>
           <tr className="bg-[var(--lotion)] border-b border-[var(--bright-gray)]">
             {editable && (
@@ -41,6 +48,7 @@ const Table = ({
                 {key}
               </th>
             ))}
+            {hasActions && <th className={`${basicTdClasses} w-[54px]`}></th>}
           </tr>
         </thead>
         <tbody>
@@ -55,37 +63,93 @@ const Table = ({
               )}
               {Object.keys(row).map((key, index) => (
                 <td key={index} className={`${basicTdClasses}`}>
-                  {key === 'Status' ? 
-                  <span className={
-                    cn('text-[11px] p-1 text-center rounded-[4px] text-white', 
-                      row[key] === 'Windykacja' && "bg-[#C15C5C]",
-                      row[key] === 'Po terminie' && "bg-[#E99B67]",
-                      row[key] === 'Zapłacono' && "bg-[#5CC184]",
-                      row[key] === 'Do zapłaty' && "bg-[#BEBEBE]",
-                    )}>
-                    {row[key]}
-                  </span> 
-                  : row[key]}
+                  {key === 'Status' ? (
+                    <span
+                      className={cn(
+                        'text-[11px] p-1 text-center rounded-[4px] text-white',
+                        row[key] === 'Windykacja' && 'bg-[#C15C5C]',
+                        row[key] === 'Po terminie' && 'bg-[#E99B67]',
+                        row[key] === 'Zapłacono' && 'bg-[#5CC184]',
+                        row[key] === 'Do zapłaty' && 'bg-[#BEBEBE]'
+                      )}
+                    >
+                      {row[key]}
+                    </span>
+                  ) : (
+                    row[key]
+                  )}
                 </td>
               ))}
+              {hasActions && (
+                <td className={`${basicTdClasses} w-[54px]`}>
+                  <Button
+                    className="w-[30px] h-[30px] pt-0 pb-0 pr-0 pl-0"
+                    variant="flat"
+                  >
+                    <img src={EditDotsIcon} alt="Edytuj" />
+                  </Button>
+                </td>
+              )}
             </tr>
           ))}
-          <tr className="bg-[#E6E6E7] border-b border-[var(--bright-gray)]">
-            {editable && <td className="w-[54px]"></td>}
-            {Object.keys(data[0]).map((key, index) => (
-              <td key={index} className={`${basicTdClasses} font-semibold`}>
-                {summary[key]}
-              </td>
-            ))}
-          </tr>
-          <tr>
-            {editable && <td className="w-[54px]"></td>}
-            {Object.keys(data[0]).map((key, index) => (
-              <td key={index} className={`${basicTdClasses} font-semibold`}>
-                {bill[key]}
-              </td>
-            ))}
-          </tr>
+
+          {showTotalPrimary && (
+            <>
+              <tr className="bg-[#E6E6E7] border-b border-[var(--bright-gray)]">
+                {editable && <td className="w-[54px]"></td>}
+                {Object.keys(data[0]).map((key, index) => (
+                  <td key={index} className={`${basicTdClasses} font-semibold`}>
+                    {summary[key]}
+                  </td>
+                ))}
+                {hasActions && emptyActionTd}
+              </tr>
+              <tr>
+                {editable && <td className="w-[54px]"></td>}
+                {Object.keys(data[0]).map((key, index) => (
+                  <td key={index} className={`${basicTdClasses} font-semibold`}>
+                    {bill[key]}
+                  </td>
+                ))}
+              </tr>
+            </>
+          )}
+
+          {showTotalSecondary && (
+            <>
+              <tr className="bg-[#E6E6E7] border-b border-[var(--bright-gray)]">
+                {editable && <td className="w-[54px]"></td>}
+                {Object.keys(data[0]).map((key, index) => (
+                  <td key={index} className={`${basicTdClasses} font-medium`}>
+                    {summary[key]}
+                  </td>
+                ))}
+                {hasActions && emptyActionTd}
+                <div className="absolute flex justify-between items-center bottom-[51px] left-[50%] transform -translate-x-1/2 w-[500px] px-[12px] h-[31px] bg-[#E6E6E7] font-medium">
+                  <p>Pozostało na rachubku deweloperskim:</p>
+                  <p className="font-semibold">100 000 zł</p>
+                </div>
+              </tr>
+
+              <tr className="border-b border-[var(--bright-gray)]">
+                {editable && <td className="w-[54px]"></td>}
+                {Object.keys(data[0]).map((key, index) => (
+                  <td key={index} className={`${basicTdClasses}`}></td>
+                ))}
+                {hasActions && emptyActionTd}
+              </tr>
+
+              <tr className="bg-[var(--lotion)]">
+                {editable && <td className="w-[54px]"></td>}
+                {Object.keys(data[0]).map((key, index) => (
+                  <td key={index} className={`${basicTdClasses} font-medium`}>
+                    {bill[key]}
+                  </td>
+                ))}
+                {hasActions && emptyActionTd}
+              </tr>
+            </>
+          )}
         </tbody>
       </table>
     </div>

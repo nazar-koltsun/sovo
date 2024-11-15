@@ -247,6 +247,7 @@ const Payments = () => {
         summary={TABLE_SUMMARY}
         bill={TABLE_BILL}
         editable
+        showTotalPrimary
       />
     </PageWrapper>
   );
