@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import BlockTitle from './BlockTitle';
 import FormInput from './FormInput';
 import FormLabel from './FormLabel';
+import PhoneNumberField from './PhoneNumberField';
 
 const AddEditClient = ({ user = null, onSave, onCancel }) => {
   const [formData, setFormData] = useState({
     name: '',
+    phone: '',
   });
+
+  console.log('formData', formData);
 
   // Populate form data if editing an existing user
   useEffect(() => {
@@ -27,6 +31,15 @@ const AddEditClient = ({ user = null, onSave, onCancel }) => {
       [name]: value,
     }));
   };
+
+  const onPhoneChange = (phone) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      phone,
+    }));
+  };
+
+
   return (
     <div className="font-figtree">
       <BlockTitle className="text-[22px]">
@@ -41,8 +54,19 @@ const AddEditClient = ({ user = null, onSave, onCancel }) => {
             name="name"
             value={formData.name}
             onChange={onChange}
-            className="w-full px-3 py-2 border rounded-md text-[var(--electric-blue)]"
             placeholder="Enter name"
+            required
+          />
+        </div>
+
+        <div>
+          <FormLabel htmlFor="phone">Phone</FormLabel>
+          <PhoneNumberField
+            id="phone"
+            name="phone"
+            value={formData.phone}
+            onChange={onPhoneChange}
+            placeholder="Enter phone number"
             required
           />
         </div>
