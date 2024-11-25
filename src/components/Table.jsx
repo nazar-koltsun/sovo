@@ -125,10 +125,12 @@ const Table = ({
                   </td>
                 ))}
                 {hasActions && emptyActionTd}
-                <div className="absolute flex justify-between items-center bottom-[51px] left-[50%] transform -translate-x-1/2 w-[500px] px-[12px] h-[31px] bg-[#E6E6E7] font-medium">
-                  <p>Pozostało na rachubku deweloperskim:</p>
-                  <p className="font-semibold">100 000 zł</p>
-                </div>
+                <td>
+                  <div className="absolute flex justify-between items-center bottom-[51px] left-[50%] transform -translate-x-1/2 w-[500px] px-[12px] h-[31px] bg-[#E6E6E7] font-medium">
+                    <p>Pozostało na rachubku deweloperskim:</p>
+                    <p className="font-semibold">100 000 zł</p>
+                  </div>
+                </td>
               </tr>
 
               <tr className="border-b border-[var(--bright-gray)]">
