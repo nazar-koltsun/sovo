@@ -10,6 +10,7 @@ const PhoneNumberField = ({id, phone, onChange}) => {
       value={phone}
       onChange={onChange}
       placeholder="Enter phone number"
+      international
     />
   );
 };

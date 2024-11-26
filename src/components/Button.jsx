@@ -1,4 +1,4 @@
-const Button = ({ variant = 'default', children, onClick, ...props }) => {
+const Button = ({ variant = 'default', children, onClick, className = '', ...props }) => {
   const baseStyles = 'flex justify-center items-center gap-3 py-2 px-4 rounded-[6px] transition duration-300 ease-in-out';
 
   const variantStyles = {
@@ -7,10 +7,10 @@ const Button = ({ variant = 'default', children, onClick, ...props }) => {
     bordered: 'py-[10px] px-[23px] bg-transparent border border-[var(--maroon)] text-[var(--maroon)] hover:bg-[var(--maroon)] hover:text-white',
   };
 
-  const combinedStyles = `${baseStyles} ${variantStyles[variant]} ${props.className}`;
+  const combinedStyles = `${baseStyles} ${variantStyles[variant]} ${className}`;
 
   return (
-    <button className={combinedStyles} onClick={onClick}>
+    <button className={combinedStyles} onClick={onClick} {...props}>
       {children}
     </button>
   );

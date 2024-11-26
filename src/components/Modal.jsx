@@ -8,7 +8,7 @@ const Modal = ({ isOpen, onClose, children }) => {
   return ReactDOM.createPortal(
     <div>
       <div className="fixed left-0 top-0 w-full h-full bg-black bg-opacity-50 flex z-40" onClick={onClose}></div>
-      <Card className="fixed w-[calc(100vw-40px)] md:w-[800px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 pt-8 pb-8 pl-10 pr-10">
+      <Card className="fixed w-full md:w-[800px] max-h-[calc(100vh-40px)] overflow-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 pt-8 pb-8 pl-10 pr-10">
         <button
           className="absolute top-2 right-2 hover:opacity-70 p-2"
           onClick={onClose}

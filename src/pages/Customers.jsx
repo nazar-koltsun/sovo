@@ -267,7 +267,7 @@ const Payments = () => {
       />
 
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <AddEditClient  />
+        <AddEditClient onSave={() => {}} />
       </Modal>
     </PageWrapper>
   );

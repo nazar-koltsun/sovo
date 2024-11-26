@@ -7,6 +7,7 @@ const FormInput = ({
   placeholder = "",
   required = false,
   className = "",
+  ...props
 }) => {
   return (
     <input
@@ -18,6 +19,7 @@ const FormInput = ({
       className={`w-full px-3 py-2 border rounded-md text-[var(--electric-blue)] ${className}`}
       placeholder={placeholder}
       required={required}
+      {...props}
     />
   );
 };
