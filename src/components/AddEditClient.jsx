@@ -4,6 +4,7 @@ import FormLabel from './FormLabel';
 import PhoneNumberField from './PhoneNumberField';
 import Button from './Button';
 import FileUpload from './FileUpload';
+import BlockTitle from './BlockTitle';
 
 // This is for testing when user exist
 // TODO: remove after testing
@@ -50,7 +51,7 @@ import FileUpload from './FileUpload';
 // }
 
 const AddEditClient = ({ client = null, onSave, onCancel }) => {
-  const [filePreview, setFilePreview] = useState(null);
+  const [filePreviews, setFilePreviews] = useState({});
 
   const [formData, setFormData] = useState({
     name: '',
@@ -74,7 +75,7 @@ const AddEditClient = ({ client = null, onSave, onCancel }) => {
     gross_price: '',
     liczba_rat: '',
     installments: [], // Installments dynamically populated based on "liczba_rat"
-    file: null, // Store uploaded file
+    files: [], // Store uploaded files
   });
 
   // Populate form data if editing an existing client
@@ -161,41 +162,68 @@ const AddEditClient = ({ client = null, onSave, onCancel }) => {
   };
 
   const handleFileUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      // Validate file type (only allow images and PDFs)
-      const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
-      if (!allowedTypes.includes(file.type)) {
-        alert('Only PDF or image files (JPEG/PNG) are allowed.');
-        return;
-      }
+    const selectedFiles = Array.from(e.target.files);
+    const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
 
-      // Set file in state
-      setFormData((prevData) => ({ ...prevData, file }));
+    const validFiles = selectedFiles
+      .filter((file) => allowedTypes.includes(file.type))
+      .map((file) => {
+        const id = Date.now() + Math.random(); // Generate unique ID
+        if (file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = () => {
+            setFilePreviews((prevPreviews) => ({
+              ...prevPreviews,
+              [id]: reader.result,
+            }));
+          };
+          reader.readAsDataURL(file);
+        }
+        return { id, file };
+      });
 
-      // Generate preview if it's an image
-      if (file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = () => setFilePreview(reader.result);
-        reader.readAsDataURL(file);
-      } else {
-        setFilePreview(null); // No preview for PDFs
-      }
-    }
+    setFormData((prevData) => ({
+      ...prevData,
+      files: [...prevData.files, ...validFiles],
+    }));
   };
 
-  const handleRemoveFile = () => {
-    setFormData((prevData) => ({ ...prevData, file: null }));
-    setFilePreview(null);
+  const handleRemoveFile = (id) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      files: prevData.files.filter((item) => item.id !== id),
+    }));
+  
+    setFilePreviews((prevPreviews) => {
+      const updatedPreviews = { ...prevPreviews };
+      delete updatedPreviews[id];
+      return updatedPreviews;
+    });
+  };
+
+  const handleNumberInput = (e) => {
+    let value = e.target.value;
+
+    // Remove invalid characters (non-numeric and special characters like `-`).
+    value = value.replace(/[^0-9]/g, '');
+
+    // Prevent leading zeros
+    if (value.startsWith('0')) value = value.replace(/^0+/, '');
+
+    // Set the sanitized value
+    e.target.value = value;
   };
 
   return (
     <div className="font-figtree max-h-[calc(100vh-40px)]">
-      <h2 className="text-[22px] text-base font-semibold text-[var(--electric-blue)]">
+      <BlockTitle className="text-[22px]">
         {client ? 'Edit client' : 'Add a new client'}
-      </h2>
+      </BlockTitle>
 
-      <form onSubmit={handleSubmit} className="grid max-600:block max-600:space-y-4 md:grid-cols-2 gap-4 mt-8 ">
+      <form
+        onSubmit={handleSubmit}
+        className="grid max-600:block max-600:space-y-4 md:grid-cols-2 gap-4 mt-8 "
+      >
         <div>
           <FormLabel htmlFor="name">Name</FormLabel>
           <FormInput
@@ -286,9 +314,11 @@ const AddEditClient = ({ client = null, onSave, onCancel }) => {
           <FormInput
             id="square"
             type="number"
+            min="1"
             name="square"
             value={formData.square}
             onChange={onChange}
+            onInput={handleNumberInput}
             placeholder="Enter square"
             required
           />
@@ -345,12 +375,14 @@ const AddEditClient = ({ client = null, onSave, onCancel }) => {
                   <FormLabel>
                     Buyer PESEL
                     <FormInput
+                      type="number"
                       id="buyer_pesel"
                       name="buyer_pesel"
                       value={buyer.pesel}
                       onChange={(e) =>
                         handleBuyerChange(buyer.id, 'pesel', e.target.value)
                       }
+                      onInput={handleNumberInput}
                       placeholder=" Enter Buyer PESEL"
                       required
                     />
@@ -380,9 +412,11 @@ const AddEditClient = ({ client = null, onSave, onCancel }) => {
           <FormInput
             id="net_price"
             type="number"
+            min="1"
             name="net_price"
             value={formData.net_price}
             onChange={onChange}
+            onInput={handleNumberInput}
             placeholder="Enter Net price"
             required
           />
@@ -393,9 +427,11 @@ const AddEditClient = ({ client = null, onSave, onCancel }) => {
           <FormInput
             id="gross_price"
             type="number"
+            min="1"
             name="gross_price"
             value={formData.gross_price}
             onChange={onChange}
+            onInput={handleNumberInput}
             placeholder="Enter Gross price"
             required
           />
@@ -409,6 +445,7 @@ const AddEditClient = ({ client = null, onSave, onCancel }) => {
             name="liczba_rat"
             value={formData.liczba_rat}
             onChange={onChange}
+            onInput={handleNumberInput}
             min="1"
             max="20"
             placeholder="Enter the number of installments"
@@ -432,6 +469,7 @@ const AddEditClient = ({ client = null, onSave, onCancel }) => {
                       onChange={(e) =>
                         handleInstallmentChange(installment.id, e.target.value)
                       }
+                      onInput={handleNumberInput}
                       placeholder="Enter percentage"
                       required
                     />
@@ -443,24 +481,17 @@ const AddEditClient = ({ client = null, onSave, onCancel }) => {
         )}
 
         <FileUpload
-          file={formData.file}
+          files={formData.files}
           onChange={handleFileUpload}
           onRemoveFile={handleRemoveFile}
-          filePreview={filePreview}
+          filePreviews={filePreviews}
         />
 
         <div className="col-span-2 flex justify-end space-x-2 pb-8 mt-10">
-          <Button
-            type="button"
-            variant='bordered'
-            onClick={onCancel}
-          >
+          <Button type="button" variant="bordered" onClick={onCancel}>
             Cancel
           </Button>
-          <Button
-            type="submit"
-            variant='default'
-          >
+          <Button type="submit" variant="default">
             Save
           </Button>
         </div>
