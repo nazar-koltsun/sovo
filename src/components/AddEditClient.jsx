@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import BlockTitle from './BlockTitle';
 import FormInput from './FormInput';
 import FormLabel from './FormLabel';
 import PhoneNumberField from './PhoneNumberField';
@@ -192,9 +191,9 @@ const AddEditClient = ({ client = null, onSave, onCancel }) => {
 
   return (
     <div className="font-figtree max-h-[calc(100vh-40px)]">
-      <BlockTitle className="text-[22px]">
+      <h2 className="text-[22px] text-base font-semibold text-[var(--electric-blue)]">
         {client ? 'Edit client' : 'Add a new client'}
-      </BlockTitle>
+      </h2>
 
       <form onSubmit={handleSubmit} className="grid max-600:block max-600:space-y-4 md:grid-cols-2 gap-4 mt-8 ">
         <div>
