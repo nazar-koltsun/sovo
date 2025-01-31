@@ -28,7 +28,7 @@ const Table = ({
 
   return (
     <div
-      className={`${className} bg-white rounded-[6px] border border-[var(--bright-gray)] text-[var(--electric-blue)] overflow-x-auto w-[calc(100vw-382px)] max-1024:w-[calc(100vw-255px)] max-768:w-[calc(100vw-55px)]`}
+      className={`${className} bg-white rounded-[6px] border border-[var(--bright-gray)] text-[var(--electric-blue)] overflow-x-auto w-[calc(100vw-382px)] max-1024:w-[calc(100vw-257px)] max-768:w-[calc(100vw-57px)]`}
     >
       <div className="sticky left-0 py-[20px] px-[20px] border-b border-[var(--bright-gray)]">
         {topContent}
